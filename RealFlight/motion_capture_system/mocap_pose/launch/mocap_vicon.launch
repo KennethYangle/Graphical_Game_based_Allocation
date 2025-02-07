@@ -1,0 +1,12 @@
+<launch>
+    <include file="$(find mocap_vicon)/launch/vicon.launch" />
+    <node pkg="tf" type="static_transform_publisher" name="map2word" args="0 0 0 0 0 0 map world 100" />
+    <node pkg="mocap_pose" name="mocap_pose_node" type="mocap_pose_node" output="screen">
+        <!--param name="vrpn_topic" value="/vrpn_client_node/Tracker3/pose"/-->
+        <param name="vrpn_topic" value="/vicon/drone_123/pose"/>
+        <param name="mavros_topic" value="/mavros/vision_pose/pose"/>
+        <!--param name="mavros_topic" value=""/-->
+        <param name="drone_pose_topic" value="/drone_mocap/pose" />
+        <param name="drone_odom_topic" value="/drone_mocap/odom" />
+    </node>
+</launch>
